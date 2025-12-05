@@ -18,7 +18,7 @@ foreach ($SPath in $shares) {
                      Where-Object { $_.DisplayRoot -and $_.DisplayRoot.TrimEnd('\') -eq $SPath.TrimEnd('\') }
 
     if ($existingDrive) {
-        Write-Host "Share $SPath is already mapped to drive $($existingDrive.Name):"
+        Write-Host "Share $SPath is already mapped to drive $($existingDrive.Name):" -ForegroundColor Yellow
         Continue
         Exit 0
     }
@@ -32,11 +32,12 @@ foreach ($SPath in $shares) {
 
     if ($DriveLetter) {
         New-PSDrive -Name $DriveLetter -PSProvider FileSystem -Root $SPath -Persist -ErrorAction Stop
-        Write-Host "Mapped $SPath to drive $DriveLetter`:"
+        Write-Host "Mapped $SPath to drive $DriveLetter`:" -ForegroundColor Green
         Continue
         Exit 0
     } else {
-        Write-Host "No free drive letters available to map $SPath."
+        Write-Host "No free drive letters available to map $SPath." -ForegroundColor Red
         Exit 1001
     }
+
 }
