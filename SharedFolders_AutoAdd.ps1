@@ -6,8 +6,8 @@ function Get-FreeDriveLetter {
 }
 
 $shares = @(
-    '\\P-MADSI-MGAU\temp'
-    '\\P-MADSI-MGAU\LabelJoy'
+    '\\Path\Sharedfolder1'
+    '\\Path\SharedFolder2'
 )
 
 $ZLetter = 'Z'
@@ -41,3 +41,4 @@ foreach ($SPath in $shares) {
     }
 
 }
+
